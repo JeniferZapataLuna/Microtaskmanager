@@ -5,15 +5,16 @@ function Foot() {
     <>
     <footer>
         <hr className="lineaBL"></hr>
-        <a href="">
+        <a href="https://github.com/JeniferZapataLuna/Microtaskmanager">
             <img className="logo" src="public/img/github-mark-white.png" alt="logo de hithub"/>
+            
         </a>
         <section className="foot">
             <h1 className="foot">
                 Microtaskmanager Github
             </h1>
             <p className="foot">
-                Copyright  2024
+                Copyright © 2024
             </p>
         </section>
 
