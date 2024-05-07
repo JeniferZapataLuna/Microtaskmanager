@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
+import Foot from './Pages/footer'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
        </section>
     </div>
     </div>
+    <Foot />
   )
 }
 
