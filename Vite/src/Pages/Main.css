@@ -66,8 +66,8 @@
 }
 
 .img {
-    width: 40px;
-    height: 55px;
+    width: 30px;
+    height: 40px;
     padding: 0.5em 0.7em;
     border-radius: 0.4em;
 }
@@ -98,8 +98,8 @@
 
 .hamburguesa-contents {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 1em;
+    left: 1em;
     margin: 0;
     z-index: 3;
     padding: 1em;
@@ -129,9 +129,9 @@
     padding: 0.3em 0.7em;
     border-radius: 0.3em;
 
-    text-decoration: none; /* Quita el subrayado predeterminado */
-    color: inherit; /* Usa el color del texto heredado */
-    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 .hamburguesa-contents.active, .hamburguesa-bg.active{
     display: flex;
