@@ -6,7 +6,7 @@ function Foot() {
     <footer>
         <hr className="lineaBL"></hr>
         <a href="https://github.com/JeniferZapataLuna/Microtaskmanager">
-            <img className="logo" src="public/img/github-mark-white.png" alt="logo de hithub"/>
+            <img className="logo" src="/img/github-mark-white.png" alt="logo de hithub"/>
             
         </a>
         <section className="foot">
