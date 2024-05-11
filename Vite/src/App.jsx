@@ -5,6 +5,7 @@ import Foot from './Pages/footer'
 function App() {
 
   return (
+    <>
     <div className='Principal'>
      <div className='D1'>
        <img 
@@ -24,6 +25,7 @@ function App() {
     </div>
     </div>
     <Foot />
+    </>
   )
 }
 
