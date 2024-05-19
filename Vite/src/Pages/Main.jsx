@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Main.css'
+import Inicio_Sesion from './Inicio_Sesion';
 
 function Body() {
 
@@ -31,7 +32,11 @@ function Body() {
         setMenuOpen(false)
     }
 
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+    const togglePopup = () => {
+        setIsPopupOpen(!isPopupOpen);
+    };
     return (
        <>
         <section className={`hamburguesa-bg ${menuOpen? 'active' : 'unactive'}`} onClick={close_ham}></section>
@@ -63,7 +68,10 @@ function Body() {
             
                 <section className='part-left'>
                     <p className='learn'>Mantente Siempre Organizado</p>
-                    <button type="button" className='Crear-Usuario boton hover'>Crea un usuario</button>
+                    <div className="App">
+                      <button type="button" className='Crear-Usuario boton hover-effect' onClick={togglePopup}>Crear un usuario</button>
+                      {isPopupOpen && <Inicio_Sesion closePopup={togglePopup} />}
+                    </div>
                 </section>
             
             <section className='Carusel'>
@@ -75,4 +83,7 @@ function Body() {
     )
   }
   
+
+
+
   export default Body

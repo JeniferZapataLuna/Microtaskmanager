@@ -53,16 +53,13 @@
 }
   
 .Crear-Usuario{
-    width: 160px;
+    width: 170px;
     height: 50px;
     border-radius: 20px;
     font-size: 15px;
     border-style: none;
     font-weight: 600;
-}
-   
-.boton {
-    background: linear-gradient(to right,#9ED3DC, #E1EBED);
+    background-color: #9ED3DC;
 }
 
 .img {
@@ -143,9 +140,15 @@
 }
 
 
-
-
-
-
-
+/* src/App.css */
+.App {
+    text-align: center;
+    margin-right: 5em;
+  }
+  
+  
+  .hover-effect:hover {
+    background-color: #ddd;
+  }
+  
 
