@@ -39,7 +39,7 @@ function Body() {
             <div className='D1'>
 
                 <section className="menu_ham menu">
-                <img src='/public/img/menu-hamburguesa.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
+                <img src='/public/img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
                 </section>
                 
                 
@@ -49,7 +49,7 @@ function Body() {
             </div>
             
             <ul className={`hamburguesa-contents ${menuOpen? 'active' : 'unactive'}`}>
-                <li><img src='/public/img/menu-hamburguesa.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
+                <li><img src='/public/img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
                 <li><a href="#" className='hover'>Inicio</a></li>
                 <li><a href="#" className='hover'>Sobre nosotros</a></li>
                 <li><a href="#" className='hover'>Servicios</a></li>

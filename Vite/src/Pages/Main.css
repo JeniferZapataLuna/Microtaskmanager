@@ -1,6 +1,6 @@
 .Principal{
-    color: white;
-    background-color: #1DAC90;
+    color: rgb(0, 0, 0);
+    background-color: #FFFAFA;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -62,7 +62,7 @@
 }
    
 .boton {
-    background: #E1EBED;
+    background: linear-gradient(to right,#9ED3DC, #E1EBED);
 }
 
 .img {
@@ -94,6 +94,7 @@
 }
 .hamburguesa-toggle {
     user-select: none;
+    padding-top: 15px;
 }
 
 .hamburguesa-contents {
