@@ -39,17 +39,17 @@ function Body() {
             <div className='D1'>
 
                 <section className="menu_ham menu">
-                <img src='/img/menu-hamburguesa.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
+                <img src='/public/img/menu-hamburguesa.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
                 </section>
                 
                 
-                <img src='/img/papel.png' alt="icon" className='Icono'/>
+                <img src='/public/img/papel.png' alt="icon" className='Icono'/>
                 <p className='name'>MICROTASKMANAGER</p>
             
             </div>
             
             <ul className={`hamburguesa-contents ${menuOpen? 'active' : 'unactive'}`}>
-                <li><img src='/img/menu-hamburguesa.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
+                <li><img src='/public/img/menu-hamburguesa.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
                 <li><a href="#" className='hover'>Inicio</a></li>
                 <li><a href="#" className='hover'>Sobre nosotros</a></li>
                 <li><a href="#" className='hover'>Servicios</a></li>
@@ -67,7 +67,7 @@ function Body() {
                 </section>
             
             <section className='Carusel'>
-            <img src="/img/carusel.png" alt="carusel"  className='img-1'/>
+            <img src="/public/img/carusel.png" alt="carusel"  className='img-1'/>
             </section>
             </div>
         </div>
