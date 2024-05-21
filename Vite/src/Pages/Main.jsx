@@ -69,7 +69,7 @@ function Body() {
                 <section className='part-left'>
                     <p className='learn'>Mantente Siempre Organizado</p>
                     <div className="App">
-                      <button type="button" className='Crear-Usuario boton hover-effect' onClick={togglePopup}>Crear un usuario</button>
+                      <button type="button" className='Crear-Usuario boton hover-effect' onClick={togglePopup}>Inicia Usuario</button>
                       {isPopupOpen && <Inicio_Sesion closePopup={togglePopup} />}
                     </div>
                 </section>
