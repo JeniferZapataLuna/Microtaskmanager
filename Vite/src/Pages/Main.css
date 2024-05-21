@@ -103,7 +103,7 @@
     padding: 1em;
     border-radius: 0.3em;
 
-    background-color: #323435;
+    background-color: #919597;
 
     font-size: 15px;
     border-style: none;
@@ -128,7 +128,7 @@
     border-radius: 0.3em;
 
     text-decoration: none;
-    color: inherit;
+    color: #fff;
     cursor: pointer;
 }
 .hamburguesa-contents.active, .hamburguesa-bg.active{

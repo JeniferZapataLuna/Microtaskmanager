@@ -12,8 +12,8 @@ const Modal = ({ closeModal }) => {
                 <input type="text" className='form Cedula'  placeholder="Cédula"/>
                 <input type="text" className='form Contraseña'  placeholder="Contraseña"/>
                 <input type="text" className='form Contraseña'  placeholder="Verificar Contraseña"/>
-                <button type='button' className='form Registrar hover-effect'>Registrarse</button>
-                <p>Volver a la pagina principal <a href='http://localhost:5173/' className='open-modal-link'>Inicio</a></p>
+                <button type='button' className='form Registrar hover-effect' ><a  className='Link' href='http://localhost:5173/Pagina2'>Registrarse</a></button>
+                <p>Volver a la pagina principal <a href='http://localhost:5173' className='open-modal-link'>Inicio</a></p>
             </div>
         </div>
     );

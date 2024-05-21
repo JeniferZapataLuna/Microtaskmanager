@@ -1,0 +1,40 @@
+.Perfil{
+
+    width: 50px;
+    height: 50px;
+    padding: 0.4em;
+    padding-left: 58%;
+
+}
+
+.Agregar{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.agregar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 55px;
+    background-color: #70FD76;
+    color: #52b657;
+    margin-left: 35px;
+    margin-top: 20px;
+    border:none;
+    border-radius: 8px;
+}
+
+.Notas{
+    border: none;
+    border-radius: 15px;
+    width: 95%;
+    height: 350px;
+    margin: 20px;
+    background-color: #E4E4E4;
+}
+
