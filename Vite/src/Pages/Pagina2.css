@@ -1,0 +1,70 @@
+.Perfil{
+
+    width: 50px;
+    height: 50px;
+    padding: 0.4em;
+    padding-left: 58%;
+
+}
+
+.Agregar{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.agregar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 55px;
+    background-color: #70FD76;
+    color: #52b657;
+    margin-left: 35px;
+    margin-top: 20px;
+    border:none;
+    border-radius: 8px;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #e0e0e0;
+    padding: 10px;
+    gap: 20px; /* Espacio entre sections */
+    margin: 30px;
+    border-radius: 20px;
+  }
+
+ .notas {
+    background-color: #a3d8a1;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    flex: 1 1 285px; /* Ajusta el tamaño mínimo a 200px */
+    max-width: 30%; /* Controla la cantidad máxima de ancho de cada sección */
+    position: relative;
+    min-height: 100px;
+    margin: 10px;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: red;
+    cursor: pointer;
+  }
+
+  .text-bold {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+
+  .Fecha{
+    margin-right: 10em;
+    margin-top: 15px;
+  }

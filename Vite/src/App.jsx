@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
-import './App.css'
-import Foot from './Pages/footer'
-import Body from './Pages/Main'
+import React from 'react';
+import Home from './Pages/Home';
+import Pagina2 from './Pages/pagina2';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-
   return (
     <>
-    <Body />
-    <Foot />
-    </>
-  )
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Pagina2" element={<Pagina2/>} />
+    </Routes>
+      </>
+      
+  );
 }
 
-export default App
+export default App;

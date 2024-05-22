@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Main.css'
+import Inicio_Sesion from './Inicio_Sesion';
 
 function Body() {
 
@@ -31,7 +32,11 @@ function Body() {
         setMenuOpen(false)
     }
 
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+    const togglePopup = () => {
+        setIsPopupOpen(!isPopupOpen);
+    };
     return (
        <>
         <section className={`hamburguesa-bg ${menuOpen? 'active' : 'unactive'}`} onClick={close_ham}></section>
@@ -39,17 +44,17 @@ function Body() {
             <div className='D1'>
 
                 <section className="menu_ham menu">
-                <img src='/img/menu-hamburguesa.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
+                <img src='/public/img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
                 </section>
                 
                 
-                <img src='/img/papel.png' alt="icon" className='Icono'/>
+                <img src='/public/img/papel.png' alt="icon" className='Icono'/>
                 <p className='name'>MICROTASKMANAGER</p>
             
             </div>
             
             <ul className={`hamburguesa-contents ${menuOpen? 'active' : 'unactive'}`}>
-                <li><img src='/img/menu-hamburguesa.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
+                <li><img src='/public/img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
                 <li><a href="#" className='hover'>Inicio</a></li>
                 <li><a href="#" className='hover'>Sobre nosotros</a></li>
                 <li><a href="#" className='hover'>Servicios</a></li>
@@ -63,11 +68,14 @@ function Body() {
             
                 <section className='part-left'>
                     <p className='learn'>Mantente Siempre Organizado</p>
-                    <button type="button" className='Crear-Usuario boton hover'>Crea un usuario</button>
+                    <div className="App">
+                      <button type="button" className='Crear-Usuario boton hover-effect' onClick={togglePopup}>Inicia Usuario</button>
+                      {isPopupOpen && <Inicio_Sesion closePopup={togglePopup} />}
+                    </div>
                 </section>
             
             <section className='Carusel'>
-            <img src="/img/carusel.png" alt="carusel"  className='img-1'/>
+            <img src="/public/img/carusel.png" alt="carusel"  className='img-1'/>
             </section>
             </div>
         </div>
@@ -75,4 +83,7 @@ function Body() {
     )
   }
   
+
+
+
   export default Body
