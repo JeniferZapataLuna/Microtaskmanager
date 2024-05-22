@@ -45,17 +45,17 @@ const pagina2 = () => {
                     <img src='/public/img/papel.png' alt="icon" className='Icono'/>
                     <p className='name'>MICROTASKMANAGER</p>
 
-                    <img src="/public/img/Perfil.png" alt="icon"  className='Perfil'/>
+                    <img src="/public/img/Perfil.png" alt="icon"  className='Perfil' onClick={toggleMenu} />
                 
                 </div>
                 <button type="button" className='agregar hover-effect'>+</button>
-                <div className='Agregar'>
-                    
-                    <section className='Notas'>
-
-                    </section>
+                <div class="container">
+                   <section className='notas'>
+                      <div class="close-button">X</div>
+                      <div className='Fecha'>Aqui va la fecha</div>
+                      <div className="text-bold">Esta es mi primera nota</div>
+                   </section>
                 </div>
-                
                 <ul className={`hamburguesa-contents ${menuOpen? 'active' : 'unactive'}`}>
                     <li><img src='/public/img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
                     <li><a href="#" className='hover'>Inicio</a></li>

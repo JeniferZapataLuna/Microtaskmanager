@@ -138,9 +138,6 @@
 .hamburguesa-contents.unactive, .hamburguesa-bg.unactive{
     display: none;
 }
-
-
-/* src/App.css */
 .App {
     text-align: center;
     margin-right: 5em;
