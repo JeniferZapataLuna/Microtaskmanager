@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './css/Main.css'
 import Inicio_Sesion from './Inicio_Sesion';
 
-function Body() {
+const Body = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
 

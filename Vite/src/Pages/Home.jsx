@@ -2,7 +2,7 @@ import React from 'react';
 import Foot from './footer';
 import Body from './Main';
 
-function Home() {
+const Home = () => {
   return (
     <>
       <Body />

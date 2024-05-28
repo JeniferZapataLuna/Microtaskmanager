@@ -1,6 +1,6 @@
 import './css/footer.css'
 
-function Foot() {
+const Foot = () => {
   return (
     <>
     <footer>
