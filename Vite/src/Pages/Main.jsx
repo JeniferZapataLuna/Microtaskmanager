@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Main.css'
+import './css/Main.css'
 import Inicio_Sesion from './Inicio_Sesion';
 
 function Body() {
@@ -44,17 +44,17 @@ function Body() {
             <div className='D1'>
 
                 <section className="menu_ham menu">
-                <img src='/public/img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
+                <img src='./Img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
                 </section>
                 
                 
-                <img src='/public/img/papel.png' alt="icon" className='Icono'/>
+                <img src='./Img/papel.png' alt="icon" className='Icono'/>
                 <p className='name'>MICROTASKMANAGER</p>
             
             </div>
             
             <ul className={`hamburguesa-contents ${menuOpen? 'active' : 'unactive'}`}>
-                <li><img src='/public/img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
+                <li><img src='./Img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
                 <li><a href="#" className='hover'>Inicio</a></li>
                 <li><a href="#" className='hover'>Sobre nosotros</a></li>
                 <li><a href="#" className='hover'>Servicios</a></li>
@@ -75,7 +75,7 @@ function Body() {
                 </section>
             
             <section className='Carusel'>
-            <img src="/public/img/carusel.png" alt="carusel"  className='img-1'/>
+            <img src="/Img/carusel.png" alt="carusel"  className='img-1'/>
             </section>
             </div>
         </div>
