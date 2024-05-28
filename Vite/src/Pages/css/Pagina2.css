@@ -21,14 +21,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
     width: 40px;
     height: 40px;
     font-size: 55px;
     background-color: #70FD76;
     color: #52b657;
-    margin-left: 35px;
-    margin-top: 20px;
     border:none;
+    margin: 0 0px 0 0.8em;
     border-radius: 8px;
 }
 .container {
@@ -104,3 +104,17 @@
     opacity: 0.8;
     margin: 0;
   }
+
+.body-mid{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between
+}
+.body-mid>form{
+  display: flex;
+  justify-content: flex-end;
+}
+.buscar {
+  padding: 1em;
+  border-radius: 0.5em;
+}

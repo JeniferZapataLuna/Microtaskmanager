@@ -61,6 +61,32 @@ const Pagina2 = () => {
     }));
   };
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const query = e.target.search.value;
+    if (query) {
+      try {
+        const response = await axios.get(`/api/usuarios/${cedula}/carpetas/root/notas/buscar`, {
+          params: { query }
+        });
+        setNotas(response.data);
+      } catch (error) {
+        console.error('Error al buscar las notas:', error);
+      }
+    } else {
+      const fetchNotas = async () => {
+        try {
+          const response = await axios.get(`/api/usuarios/${cedula}/carpetas/root/notas`);
+          setNotas(response.data);
+        } catch (error) {
+          console.error('Error al obtener las notas:', error);
+        }
+      };
+
+      fetchNotas();
+    }
+  };
+
   const createNota = async (nota) => {
     if (cedula && nota.titulo && nota.contenido) {
       try {
@@ -123,7 +149,14 @@ const Pagina2 = () => {
           <p className='name'>MICROTASKMANAGER</p>
           <img src="./Img/Perfil.png" alt="Cerrar sesion" className='Perfil' onClick={logout} />
         </div>
-        <button type="button" className='agregar hover-effect' onClick={openNewNotaModal}>+</button>
+        <section className='body-mid'>
+          <form onSubmit={handleSearch}>
+            <input type="search" className='buscar' name="search" id="search-note" placeholder="Buscar notas..." />
+            <button type="submit" className='buscar hover-effect'>🔎</button>
+          </form>
+          <button type="button" className='agregar hover-effect' onClick={openNewNotaModal}>+</button>
+        </section>
+        
         <div className="container">
           {notas.map((nota) => (
             <section key={nota._id} className='notas' style={{ backgroundColor: nota.color }}>

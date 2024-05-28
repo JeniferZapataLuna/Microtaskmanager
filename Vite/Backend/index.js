@@ -269,7 +269,34 @@ app.delete('/api/usuarios/:cedula/carpetas/:carpetaNombre/notas/:notaId', verify
   }
 });
 
+// Buscar notas por título o contenido
+app.get('/api/usuarios/:cedula/carpetas/:carpetaNombre/notas/buscar', verifyToken, async (req, res) => {
+  try {
+    const { cedula, carpetaNombre } = req.params;
+    const { query } = req.query;
 
+    const usuario = await Notas.findOne({ cedula });
+
+    if (!usuario) {
+      return res.status(404).send({ mensaje: 'Usuario no encontrado' });
+    }
+
+    const carpeta = usuario.carpetas.find(c => c.nombre === carpetaNombre);
+
+    if (!carpeta) {
+      return res.status(404).send({ mensaje: 'Carpeta no encontrada' });
+    }
+
+    const notasEncontradas = carpeta.notas.filter(nota => 
+      nota.titulo.includes(query) || nota.contenido.includes(query)
+    );
+
+    res.status(200).send(notasEncontradas);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ mensaje: error.message });
+  }
+});
 
 
 
