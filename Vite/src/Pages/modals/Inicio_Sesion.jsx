@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './css/Inicio_Sesion.css';
+import '../css/Inicio_Sesion.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './utils/AuthContext.jsx';
+import { useAuth } from '../utils/AuthContext.jsx';
 import Modal from './Modal.jsx';
 
 const Inicio_Sesion = ({ closePopup }) => {

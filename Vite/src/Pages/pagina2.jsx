@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/Pagina2.css';
 import { useAuth } from './utils/AuthContext';
-import AddNoteModal from '../AddNoteModal';
-import EditNoteModal from '../EditNoteModal';
+import AddNoteModal from './modals/AddNoteModal';
+import EditNoteModal from './modals/EditNoteModal';
 
 const Pagina2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);

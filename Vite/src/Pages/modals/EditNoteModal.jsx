@@ -1,12 +1,12 @@
-// src/AddNoteModal.jsx
+// src/EditNoteModal.jsx
 import React, { useState } from 'react';
-import './Pages/css/Modal.css';
+import '../css/Modal.css';
 
-const AddNoteModal = ({ createNota, closeModal }) => {
+const EditNoteModal = ({ nota, updateNota, closeModal }) => {
   const [formData, setFormData] = useState({
-    titulo: '',
-    color: '#B5D8B3',
-    contenido: '',
+    titulo: nota.titulo,
+    color: nota.color,
+    contenido: nota.contenido,
   });
 
   const handleChange = (e) => {
@@ -19,7 +19,7 @@ const AddNoteModal = ({ createNota, closeModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createNota(formData);
+    await updateNota(nota._id, formData);
     closeModal();
   };
 
@@ -27,7 +27,7 @@ const AddNoteModal = ({ createNota, closeModal }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <span className="close-button" onClick={closeModal}>&times;</span>
-        <label className='til2'>Añadir Nota</label>
+        <label className='til2'>Editar Nota</label>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -54,11 +54,11 @@ const AddNoteModal = ({ createNota, closeModal }) => {
             onChange={handleChange}
             required
           ></textarea>
-          <button type='submit' className='form Registrar hover-effect'>Añadir Nota</button>
+          <button type='submit' className='form Registrar hover-effect'>Guardar Cambios</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default AddNoteModal;
+export default EditNoteModal;

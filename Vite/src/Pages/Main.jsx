@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './css/Main.css'
-import Inicio_Sesion from './Inicio_Sesion';
+import Inicio_Sesion from './modals/Inicio_Sesion';
 
 const Body = () => {
 
