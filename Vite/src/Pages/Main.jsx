@@ -1,89 +1,163 @@
-import { useState } from 'react';
-import './css/Main.css'
-import Inicio_Sesion from './modals/Inicio_Sesion';
+import { useState, useEffect } from "react";
+import {
+  Box,
+  Button,
+  Typography,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  CssBaseline
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import Inicio_Sesion from "./modals/Inicio_Sesion";
 
-const Body = () => {
+function Body() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+  const close_ham = () => {
+    setMenuOpen(false);
+  };
 
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
 
-    const hover = (element) => {
-        element.addEventListener("mouseover", () => {
-            element.style.backgroundColor = "lightblue";
-        });
+  return (
+    <>
+      <CssBaseline />
+      <Box
+        sx={{
+          display: menuOpen ? "block" : "none",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.2)",
+          zIndex: 2,
+        }}
+        onClick={close_ham}
+      ></Box>
+      <Box
+        sx={{
+          color: "rgb(0, 0, 0)",
+          backgroundColor: "#FFFAFA",
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "center",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            margin: "0rem",
+          }}
+        >
+          <IconButton
+            sx={{ padding: "0em", marginRight: "0em", borderRadius: "0.8em" }}
+            onClick={toggleMenu}
+          >
+            <MenuIcon />
+          </IconButton>
+          <img
+            src="./Img/papel.png"
+            alt="icon"
+            style={{ width: "45px", height: "45px", padding: "0em" }}
+          />
+          <Typography
+            variant="h5"
+            sx={{ fontFamily: "Montserrat", fontWeight: "800", fontSize: "1.7em" }}
+          >
+            MICROTASKMANAGER
+          </Typography>
+        </Box>
 
-        element.addEventListener("mouseout", () => {
-            element.style.backgroundColor = "";
-        });
-    }
+        <Drawer anchor="left" open={menuOpen} onClose={toggleMenu}>
+          <List>
+            <ListItem button onClick={toggleMenu}>
+              <ListItemText primary="Inicio" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Sobre nosotros" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Servicios" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Contacto" />
+            </ListItem>
+          </List>
+        </Drawer>
 
-    const addhover = () => {
-        const botones = document.getElementsByClassName("hover");
-        Array.from(botones).map(boton => {
-            hover(boton); // Llamar a la función addHoverEffect y pasar cada elemento como argumento
-        });
-    };
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            padding: "0rem",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "start",
+              maxWidth: "50%",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                marginBottom: "20px",
+                textAlign: "justify",
+                width: "300px",
+                fontFamily: "Montserrat",
+                fontWeight: "800",
+                fontSize: "40px",
+              }}
+            >
+              Mantente Siempre Organizado
+            </Typography>
+            <Box>
+              <Button
+                variant="contained"
+                sx={{
+                  width: "170px",
+                  height: "50px",
+                  borderRadius: "20px",
+                  fontSize: "15px",
+                  fontWeight: "600",
+                  backgroundColor: "#9ED3DC",
+                  "&:hover": {
+                    backgroundColor: "#ddd",
+                  },
+                }}
+                onClick={togglePopup}
+              >
+                Inicia Usuario
+              </Button>
+              {isPopupOpen && <Inicio_Sesion closePopup={togglePopup} />}
+            </Box>
+          </Box>
 
-    const close_ham = () => {
-        setMenuOpen(false)
-    }
+          <Box>
+            <img src="/Img/carusel.png" alt="carusel" style={{ width: "600px" }} />
+          </Box>
+        </Box>
+      </Box>
+    </>
+  );
+}
 
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-    const togglePopup = () => {
-        setIsPopupOpen(!isPopupOpen);
-    };
-    return (
-       <>
-        <section className={`hamburguesa-bg ${menuOpen? 'active' : 'unactive'}`} onClick={close_ham}></section>
-        <div className='Principal' onLoad={addhover}>
-            <div className='D1'>
-
-                <section className="menu_ham menu">
-                <img src='./Img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
-                </section>
-                
-                
-                <img src='./Img/papel.png' alt="icon" className='Icono'/>
-                <p className='name'>MICROTASKMANAGER</p>
-            
-            </div>
-            
-            <ul className={`hamburguesa-contents ${menuOpen? 'active' : 'unactive'}`}>
-                <li><img src='./Img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
-                <li><a href="#" className='hover'>Inicio</a></li>
-                <li><a href="#" className='hover'>Sobre nosotros</a></li>
-                <li><a href="#" className='hover'>Servicios</a></li>
-                <li><a href="#" className='hover'>Contacto</a></li>
-            </ul>
-
-
-
-
-            <div className='D2'>
-            
-                <section className='part-left'>
-                    <p className='learn'>Mantente Siempre Organizado</p>
-                    <div className="App">
-                      <button type="button" className='Crear-Usuario boton hover-effect' onClick={togglePopup}>Inicia Usuario</button>
-                      {isPopupOpen && <Inicio_Sesion closePopup={togglePopup} />}
-                    </div>
-                </section>
-            
-            <section className='Carusel'>
-            <img src="/Img/carusel.png" alt="carusel"  className='img-1'/>
-            </section>
-            </div>
-        </div>
-      </>
-    )
-  }
-  
-
-
-
-  export default Body
+export default Body;
