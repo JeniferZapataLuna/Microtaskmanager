@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
-import '../css/Inicio_Sesion.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext.jsx';
 import Modal from './Modal.jsx';
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+  Typography,
+  Link,
+  Alert
+} from '@mui/material';
 
 const Inicio_Sesion = ({ closePopup }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,46 +29,86 @@ const Inicio_Sesion = ({ closePopup }) => {
         setIsModalOpen(!isModalOpen);
     };
     const closeModal = () => {
-        setIsModalOpen(false)
-    }
+        setIsModalOpen(false);
+    };
     const openModal = () => {
-        setIsModalOpen(true)
-    }
-  
+        setIsModalOpen(true);
+    };
+
     const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-        const response = await axios.post('/api/login', { email, contrasena }, { withCredentials: true });
-        setMensaje('Inicio de sesión exitoso');
-        login(response.data.token, response.data.cedula);
-        navigate('/Manager'); // Redirige a la página de usuarios
-      } catch (error) {
-        setMensaje(error.response.data.mensaje);
-      }
+        e.preventDefault();
+        try {
+            const response = await axios.post('/api/login', { email, contrasena }, { withCredentials: true });
+            setMensaje('Inicio de sesión exitoso');
+            login(response.data.token, response.data.cedula);
+            navigate('/Manager'); // Redirige a la página de usuarios
+        } catch (error) {
+            setMensaje(error.response.data.mensaje);
+        }
     };
 
     return (
-        <div className='modal_container' id='modal_container'>
-            <div className='modal'>
-                <span className="close-button" onClick={closePopup}>&times;</span>
-                <label type="text" className='til'>Iniciar Sesión</label>
-               <form className='Form' onSubmit={handleLogin}>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required name='Usuario' className='form Usuario' id='FormU_Usuario' placeholder="Usuario"/>
-                    <input type='password' value={contrasena} onChange={(e) => setContrasena(e.target.value)} required name='Contraseña' className='form Contraseña'  id='FormU_Contraseña' placeholder="Contraseña"/>
-                    <button type='submit' className='form Ingresar hover-effect'>Ingresar</button>
+        <Dialog open={true} onClose={closePopup}
+        sx={{
+          padding: 3,
+          borderRadius: 3,
+          textAlign: 'center',
+          width: '90%', // Ajusta el ancho aquí (ejemplo: 90%)
+          maxWidth: '550px', // Máximo ancho en pixeles
+          margin: 'auto',
+          
+        }}>
+            <DialogTitle 
+            sx={{          
+            justifyItems: 'center',
+            textAlign: 'center',
+            backgroundColor: '#fff',
+            width: '180px',
+            height: '55px',
+            margin: 'auto',
+            margintop: "10px"
+          }}>
+              Iniciar Sesión
+            </DialogTitle>
+            <DialogContent>
+                <form onSubmit={handleLogin}>
+                    <TextField
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        label="Usuario"
+                        sx={{width: "90%"}}
+
+                    />
+                    <TextField
+                        type="password"
+                        value={contrasena}
+                        onChange={(e) => setContrasena(e.target.value)}
+                        required
+                        label="Contraseña"
+                        sx={{width: "90%"}}
+                    />
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        sx={{ mt: 2, width: "90%",borderRadius: '20px', backgroundColor: '#9ED3DC' }}
+                    >
+                        Ingresar
+                    </Button>
                 </form>
-                <div className="main-container">
-                {mensaje && <p>{mensaje}</p>}
-                <div>¿Necesitas una cuenta? <a href="#" onClick={openModal} className="open-modal-link">Regristrarse</a>
-                  {isModalOpen && <Modal closeModal={closeModal} />}</div>
-                </div>
-            </div>
-            </div>
+                {mensaje && <Alert severity="info" sx={{ mt: 2 }}>{mensaje}</Alert>}
+                <Box mt={2} textAlign="center">
+                    <Typography>¿Necesitas una cuenta? <Link href="#" onClick={openModal}>Registrarse</Link></Typography>
+                    {isModalOpen && <Modal closeModal={closeModal} />}
+                </Box>
+            </DialogContent>
+        </Dialog>
     );
 };
 
 export default Inicio_Sesion;
 
- 
  
  

@@ -2,10 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../css/Modal.css';
+import { Modal, Button, TextField, Typography, Box } from '@mui/material';
 
-const Modal = ({ closeModal }) => {
-
+const ModalC = ({ closeModal }) => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nombre: '',
@@ -28,7 +27,7 @@ const Modal = ({ closeModal }) => {
         if (formData.contrasena !== formData.Ccontrasena) {
             alert('Las contraseñas no coinciden');
             return;
-        }else{
+        } else {
             try {
                 const response = await axios.post('/api/registrar', {
                     nombre: formData.nombre,
@@ -40,76 +39,99 @@ const Modal = ({ closeModal }) => {
                 alert('Usuario registrado con éxito');
                 closeModal()
                 navigate('/'); // Redirige a la página principal
-              } catch (error) {
+            } catch (error) {
                 console.error('Error al registrar el usuario:', error);
                 alert('Error al registrar el usuario');
-              }
+            }
         }
-        
-      };
-      return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <span className="close-button" onClick={closeModal}>&times;</span>
-                <label className='til2'>Crea un Usuario</label>
+    };
+
+    return (
+        <Modal open onClose={closeModal} disableEscapeKeyDown
+           sx={{display: 'flex',justifyContent: 'center'}} >
+            <Box sx={{
+                justifyContent: 'space-evenly',
+                display: 'flex',
+                flexDirection: 'column',
+                top: 0,
+                right: 0,
+                width: "35%",
+                height: "90%",
+                margin: "30px",
+                background: '#FFFFFF',
+                borderRadius: 3,
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                textAlign: 'center'
+            }}>
                 <form onSubmit={handleSubmit}>
-                    <input
+                    <Typography variant="h6" gutterBottom >Crea un Usuario</Typography>
+                    <TextField
                         type="text"
                         name="nombre"
                         id="nombre"
+                        label="Nombre"
+                        variant="outlined"
                         className='form Nombre'
-                        placeholder='Nombre'
                         value={formData.nombre}
                         onChange={handleChange}
                         required
                     />
-                    <input
+                    <TextField
                         type="email"
                         name="email"
                         id="email"
+                        label="Email"
+                        variant="outlined"
                         className='form Email'
-                        placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
                         required
                     />
-                    <input
+                    <TextField
                         type="text"
                         name="cedula"
                         id="cedula"
+                        label="Cédula"
+                        variant="outlined"
                         className='form Cedula'
-                        placeholder="Cédula"
                         value={formData.cedula}
                         onChange={handleChange}
                         required
                     />
-                    <input
+                    <TextField
                         type="password"
                         name="contrasena"
                         id="contrasena"
+                        label="Contraseña"
+                        variant="outlined"
                         className='form Contraseña'
-                        placeholder="Contraseña"
                         value={formData.contrasena}
                         onChange={handleChange}
                         required
                     />
-                    <input
+                    <TextField
                         type="password"
                         name="Ccontrasena"
                         id="Ccontrasena"
+                        label="Verificar Contraseña"
+                        variant="outlined"
                         className='form Contraseña'
-                        placeholder="Verificar Contraseña"
                         value={formData.Ccontrasena}
                         onChange={handleChange}
                         required
                     />
-                    <button type='submit' className='form Registrar hover-effect'>Registrarse</button>
+                    <Button type='submit'variant="contained" 
+                    sx={{
+                        margin:"10px 0px 10px 0px",
+                        width: "88%",
+                        bgcolor: "#9ED3DC",
+                        borderRadius: "20px"
+                    }}>Registrarse</Button>
                 </form>
-                <p>Volver a la pagina principal <a href='/' className='open-modal-link' onClick={closeModal}>Inicio</a></p>
-            </div>
-        </div>
+                <Typography variant="body1" gutterBottom>Volver a la página principal <a href='/' className='open-modal-link' onClick={closeModal}>Inicio</a></Typography>
+            </Box>
+        </Modal>
     );
 };
 
-export default Modal;
-
+export default ModalC;
