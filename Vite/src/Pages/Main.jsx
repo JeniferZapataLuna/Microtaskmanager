@@ -65,10 +65,10 @@ function Body() {
           }}
         >
           <IconButton
-            sx={{ padding: "0.5em", marginRight: "0.3em", marginLeft: "0.3em", borderRadius: "0.8em" }}
+            sx={{ padding: "0.5em", marginRight: "0.3em", marginLeft: "0.3em", borderRadius: "0.8em"}}
             onClick={toggleMenu}
           >
-            <MenuIcon />
+            <MenuIcon sx={{width:"30px", height: "30px"}} />
           </IconButton>
           <img
             src="./Img/papel.png"
