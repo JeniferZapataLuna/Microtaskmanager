@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Box, Typography, Button, TextField, IconButton, Modal, Paper } from '@mui/material';
+import { Container, Box, Typography, Button, TextField, IconButton, Drawer, List, ListItem, ListItemText, CssBaseline, Paper } from '@mui/material';
 import { useAuth } from './utils/AuthContext';
 import AddNoteModal from './modals/AddNoteModal';
 import EditNoteModal from './modals/EditNoteModal';
@@ -9,10 +9,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from '@mui/icons-material/Edit';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
-import BuildIcon from '@mui/icons-material/Build';
 
 const Pagina2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,6 +19,10 @@ const Pagina2 = () => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   useEffect(() => {
@@ -116,20 +116,77 @@ const Pagina2 = () => {
     <>
       {newNotaModalOpen && <AddNoteModal createNota={createNota} closeModal={closeNewNotaModal} />}
       {editNota && <EditNoteModal nota={editNota} updateNota={updateNota} closeModal={closeEditModal} />}
-      <Modal open={menuOpen} onClose={toggleMenu}>
-        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh', bgcolor: 'rgba(0, 0, 0, 0.5)' }} onClick={toggleMenu} />
-      </Modal>
-      <Container sx={{ textAlign: 'center', mt: 4 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <IconButton onClick={toggleMenu}>
-            <MenuIcon fontSize="large" />
+      <CssBaseline />
+      <Box
+        sx={{
+          display: menuOpen ? "block" : "none",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.2)",
+          zIndex: 2,
+        }}
+        onClick={closeMenu}
+      ></Box>
+      <Box
+        sx={{
+          color: "rgb(0, 0, 0)",
+          backgroundColor: "#FFFAFA",
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "center",
+          margin: "0.6em"
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            margin: "0em",
+          }}
+        >
+          <IconButton
+            sx={{ padding: "0.5em", marginRight: "0.3em", marginLeft: "0.3em", borderRadius: "0.8em"}}
+            onClick={toggleMenu}
+          >
+            <MenuIcon sx={{width:"30px", height: "30px"}}/>
           </IconButton>
-          <Typography variant="h4">MICROTASKMANAGER</Typography>
-          <IconButton onClick={logout}>
-            <AccountCircle fontSize="large" />
+          <img
+            src="./Img/papel.png"
+            alt="icon"
+            style={{ width: "45px", height: "45px", padding: "0em" }}
+          />
+          <Typography
+            variant="h5"
+            sx={{ fontFamily: "Montserrat", fontWeight: "800", fontSize: "1.7em" }}
+          >
+            MICROTASKMANAGER
+          </Typography>
+          <IconButton onClick={logout} sx={{marginLeft: "62.6%"}}>
+            <AccountCircle fontSize="large" sx={{width:"45px", height: "45px"}} />
           </IconButton>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+        <Drawer anchor="left" open={menuOpen} onClose={toggleMenu}>
+          <List sx={{ margin: "20px" }}>
+            <ListItem button onClick={toggleMenu}>
+              <ListItemText primary="Inicio" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Sobre nosotros" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Servicios" />
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Contacto" />
+            </ListItem>
+          </List>
+        </Drawer>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2, p: 2 }}>
           <form onSubmit={handleSearch}>
             <TextField
               variant="outlined"
@@ -170,35 +227,7 @@ const Pagina2 = () => {
             </Paper>
           ))}
         </Box>
-        <Box sx={{ display: menuOpen ? 'block' : 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', bgcolor: 'white', zIndex: 10 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', p: 2, borderBottom: '1px solid #ccc' }}>
-            <IconButton onClick={toggleMenu}>
-              <MenuIcon fontSize="large" />
-            </IconButton>
-            <IconButton onClick={toggleMenu}>
-              <CloseIcon fontSize="large" />
-            </IconButton>
-          </Box>
-          <Box sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <HomeIcon sx={{ mr: 1 }} />
-              <Typography variant="h6">Inicio</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <InfoIcon sx={{ mr: 1 }} />
-              <Typography variant="h6">Sobre nosotros</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <BuildIcon sx={{ mr: 1 }} />
-              <Typography variant="h6">Servicios</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <ContactMailIcon sx={{ mr: 1 }} />
-              <Typography variant="h6">Contacto</Typography>
-            </Box>
-          </Box>
-        </Box>
-      </Container>
+      </Box>
     </>
   );
 };

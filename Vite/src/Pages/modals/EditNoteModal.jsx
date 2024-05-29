@@ -1,6 +1,11 @@
-// src/EditNoteModal.jsx
 import React, { useState } from 'react';
-
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+  Button,
+} from '@mui/material';
 
 const EditNoteModal = ({ nota, updateNota, closeModal }) => {
   const [formData, setFormData] = useState({
@@ -24,40 +29,61 @@ const EditNoteModal = ({ nota, updateNota, closeModal }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <span className="close-button" onClick={closeModal}>&times;</span>
-        <label className='til2'>Editar Nota</label>
+    <Dialog open={true} onClose={closeModal} sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+      <DialogTitle sx={{
+        textAlign: 'center',
+        backgroundColor: '#fff',
+        width: '180px',
+        height: '55px',
+        margin: 'auto',
+        margintop: "10px"
+      }}>
+        Editar Nota
+      </DialogTitle>
+      <DialogContent sx={{ marginLeft: "30px",display: "flex", alignItems: "center", justifyContent: "center" }}>
         <form onSubmit={handleSubmit}>
-          <input
+          <TextField
             type="text"
             name="titulo"
-            className='form Nombre'
-            placeholder='Título'
+            label="Título"
+            fullWidth
             value={formData.titulo}
             onChange={handleChange}
             required
+            sx={{ width: "90%", margin: '10px' }}
           />
-          <input
+          <TextField
             type="color"
             name="color"
-            className='form Color'
+            label="Color"
+            fullWidth
             value={formData.color}
             onChange={handleChange}
             required
+            sx={{ width: "90%", margin: '10px' }}
           />
-          <textarea
+          <TextField
             name="contenido"
-            className='form Contenido'
-            placeholder="Contenido"
+            label="Contenido"
+            multiline
+            rows={4}
+            fullWidth
             value={formData.contenido}
             onChange={handleChange}
             required
-          ></textarea>
-          <button type='submit' className='form Registrar hover-effect'>Guardar Cambios</button>
+            sx={{ width: "90%", margin: '10px' }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{ mt: 2, width: '94%', borderRadius: '20px', backgroundColor: '#9ED3DC' }}
+          >
+            Guardar Cambios
+          </Button>
         </form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 
