@@ -1,6 +1,6 @@
 // src/EditNoteModal.jsx
 import React, { useState } from 'react';
-import '../css/Modal.css';
+
 
 const EditNoteModal = ({ nota, updateNota, closeModal }) => {
   const [formData, setFormData] = useState({

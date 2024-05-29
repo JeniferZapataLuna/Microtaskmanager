@@ -1,6 +1,6 @@
 // src/AddNoteModal.jsx
 import React, { useState } from 'react';
-import '../css/Modal.css';
+
 
 const AddNoteModal = ({ createNota, closeModal }) => {
   const [formData, setFormData] = useState({

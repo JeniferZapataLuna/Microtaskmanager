@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './css/Pagina2.css';
+import { Container, Box, Typography, Button, TextField, IconButton, Modal, Paper } from '@mui/material';
 import { useAuth } from './utils/AuthContext';
 import AddNoteModal from './modals/AddNoteModal';
 import EditNoteModal from './modals/EditNoteModal';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import EditIcon from '@mui/icons-material/Edit';
+import SearchIcon from '@mui/icons-material/Search';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import BuildIcon from '@mui/icons-material/Build';
 
 const Pagina2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,30 +25,8 @@ const Pagina2 = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const hover = (element) => {
-    element.addEventListener("mouseover", () => {
-      element.style.backgroundColor = "lightblue";
-    });
-
-    element.addEventListener("mouseout", () => {
-      element.style.backgroundColor = "";
-    });
-  };
-
-  const addhover = () => {
-    const botones = document.getElementsByClassName("hover");
-    Array.from(botones).map(boton => {
-      hover(boton);
-    });
-  };
-
-  const close_ham = () => {
-    setMenuOpen(false);
-  };
-
   useEffect(() => {
     if (cedula) {
-      // Fetch notas del usuario usando la cedula
       const fetchNotas = async () => {
         try {
           const response = await axios.get(`/api/usuarios/${cedula}/carpetas/root/notas`);
@@ -53,22 +40,12 @@ const Pagina2 = () => {
     }
   }, [cedula]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewNota(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
   const handleSearch = async (e) => {
     e.preventDefault();
     const query = e.target.search.value;
     if (query) {
       try {
-        const response = await axios.get(`/api/usuarios/${cedula}/carpetas/root/notas/buscar`, {
-          params: { query }
-        });
+        const response = await axios.get(`/api/usuarios/${cedula}/carpetas/root/notas/buscar`, { params: { query } });
         setNotas(response.data);
       } catch (error) {
         console.error('Error al buscar las notas:', error);
@@ -139,46 +116,89 @@ const Pagina2 = () => {
     <>
       {newNotaModalOpen && <AddNoteModal createNota={createNota} closeModal={closeNewNotaModal} />}
       {editNota && <EditNoteModal nota={editNota} updateNota={updateNota} closeModal={closeEditModal} />}
-      <section className={`hamburguesa-bg ${menuOpen ? 'active' : 'unactive'}`} onClick={close_ham}></section>
-      <div className='Principal' onLoad={addhover}>
-        <div className='D1'>
-          <section className="menu_ham menu">
-            <img src='./Img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/>
-          </section>
-          <img src='./Img/papel.png' alt="icon" className='Icono'/>
-          <p className='name'>MICROTASKMANAGER</p>
-          <img src="./Img/Perfil.png" alt="Cerrar sesion" className='Perfil' onClick={logout} />
-        </div>
-        <section className='body-mid'>
+      <Modal open={menuOpen} onClose={toggleMenu}>
+        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh', bgcolor: 'rgba(0, 0, 0, 0.5)' }} onClick={toggleMenu} />
+      </Modal>
+      <Container sx={{ textAlign: 'center', mt: 4 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <IconButton onClick={toggleMenu}>
+            <MenuIcon fontSize="large" />
+          </IconButton>
+          <Typography variant="h4">MICROTASKMANAGER</Typography>
+          <IconButton onClick={logout}>
+            <AccountCircle fontSize="large" />
+          </IconButton>
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
           <form onSubmit={handleSearch}>
-            <input type="search" className='buscar' name="search" id="search-note" placeholder="Buscar notas..." />
-            <button type="submit" className='buscar hover-effect'>🔎</button>
+            <TextField
+              variant="outlined"
+              placeholder="Buscar notas..."
+              name="search"
+              sx={{ mr: 2 }}
+            />
+            <IconButton type="submit">
+              <SearchIcon fontSize="large" />
+            </IconButton>
           </form>
-          <button type="button" className='agregar hover-effect' onClick={openNewNotaModal}>+</button>
-        </section>
-        
-        <div className="container">
+          <Button variant="contained" color="success" onClick={openNewNotaModal} sx={{ fontSize: 24 }}>
+            +
+          </Button>
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', bgcolor: '#e0e0e0', p: 2, gap: 2, borderRadius: 2, mt: 4 }}>
           {notas.map((nota) => (
-            <section key={nota._id} className='notas' style={{ backgroundColor: nota.color }}>
-              <div className='Fecha'>
-                {new Date(nota.fecha).toLocaleString()}
-                <button className='edit-button' onClick={() => openEditModal(nota)}>E</button>
-                <button className='close-button' onClick={() => deleteNota(nota._id)}>X</button>
-              </div>
-              <div className="text-bold">{nota.titulo}</div>
-              <div className='note-content'>{nota.contenido}</div>
-              
-            </section>
+            <Paper key={nota._id} sx={{ bgcolor: nota.color, p: 2, borderRadius: 2, flex: '1 1 285px', maxWidth: '30%', minHeight: 100, position: 'relative' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
+                  {new Date(nota.fecha).toLocaleString()}
+                </Typography>
+                <Box>
+                  <IconButton size="small" onClick={() => openEditModal(nota)}>
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                  <IconButton size="small" onClick={() => deleteNota(nota._id)}>
+                    <CloseIcon fontSize="small" sx={{ color: 'error.main' }} />
+                  </IconButton>
+                </Box>
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                {nota.titulo}
+              </Typography>
+              <Typography variant="body2" sx={{ wordWrap: 'break-word' }}>
+                {nota.contenido}
+              </Typography>
+            </Paper>
           ))}
-        </div>
-        <ul className={`hamburguesa-contents ${menuOpen ? 'active' : 'unactive'}`}>
-          <li><img src='./Img/menu.png' alt="Menu hamburguesa" onClick={toggleMenu} className='img hover hamburguesa-toggle'/></li>
-          <li><a href="#" className='hover'>Inicio</a></li>
-          <li><a href="#" className='hover'>Sobre nosotros</a></li>
-          <li><a href="#" className='hover'>Servicios</a></li>
-          <li><a href="#" className='hover'>Contacto</a></li>
-        </ul>
-      </div>
+        </Box>
+        <Box sx={{ display: menuOpen ? 'block' : 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', bgcolor: 'white', zIndex: 10 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', p: 2, borderBottom: '1px solid #ccc' }}>
+            <IconButton onClick={toggleMenu}>
+              <MenuIcon fontSize="large" />
+            </IconButton>
+            <IconButton onClick={toggleMenu}>
+              <CloseIcon fontSize="large" />
+            </IconButton>
+          </Box>
+          <Box sx={{ p: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <HomeIcon sx={{ mr: 1 }} />
+              <Typography variant="h6">Inicio</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <InfoIcon sx={{ mr: 1 }} />
+              <Typography variant="h6">Sobre nosotros</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <BuildIcon sx={{ mr: 1 }} />
+              <Typography variant="h6">Servicios</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <ContactMailIcon sx={{ mr: 1 }} />
+              <Typography variant="h6">Contacto</Typography>
+            </Box>
+          </Box>
+        </Box>
+      </Container>
     </>
   );
 };

@@ -70,7 +70,7 @@ const Inicio_Sesion = ({ closePopup }) => {
           }}>
               Iniciar Sesión
             </DialogTitle>
-            <DialogContent>
+            <DialogContent sx={{height: "90%",maxHeight: '300px', margin:"10px"}}>
                 <form onSubmit={handleLogin}>
                     <TextField
                         type="email"
@@ -78,7 +78,7 @@ const Inicio_Sesion = ({ closePopup }) => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         label="Usuario"
-                        sx={{width: "90%"}}
+                        sx={{width: "90%",margin: '10px'}}
 
                     />
                     <TextField
@@ -87,7 +87,7 @@ const Inicio_Sesion = ({ closePopup }) => {
                         onChange={(e) => setContrasena(e.target.value)}
                         required
                         label="Contraseña"
-                        sx={{width: "90%"}}
+                        sx={{width: "90%", margin: '10px'}}
                     />
                     <Button
                         type="submit"

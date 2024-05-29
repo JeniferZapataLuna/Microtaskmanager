@@ -30,7 +30,7 @@ function Body() {
   };
 
   return (
-    <>
+    < >
       <CssBaseline />
       <Box
         sx={{
@@ -52,6 +52,7 @@ function Body() {
           display: "flex",
           flexDirection: "column",
           textAlign: "center",
+          margin: "0.6em"
         }}
       >
         <Box
@@ -60,11 +61,11 @@ function Body() {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "flex-start",
-            margin: "0rem",
+            margin: "0em",
           }}
         >
           <IconButton
-            sx={{ padding: "0em", marginRight: "0em", borderRadius: "0.8em" }}
+            sx={{ padding: "0.5em", marginRight: "0.3em", marginLeft: "0.3em", borderRadius: "0.8em" }}
             onClick={toggleMenu}
           >
             <MenuIcon />
@@ -83,7 +84,7 @@ function Body() {
         </Box>
 
         <Drawer anchor="left" open={menuOpen} onClose={toggleMenu}>
-          <List>
+          <List sx={{margin: "20px"}}>
             <ListItem button onClick={toggleMenu}>
               <ListItemText primary="Inicio" />
             </ListItem>

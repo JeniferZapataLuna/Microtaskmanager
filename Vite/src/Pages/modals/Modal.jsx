@@ -48,7 +48,7 @@ const ModalC = ({ closeModal }) => {
 
     return (
         <Modal open onClose={closeModal} disableEscapeKeyDown
-           sx={{display: 'flex',justifyContent: 'center'}} >
+           sx={{display: 'flex',justifyContent: 'center', flexDirection: 'row'}} >
             <Box sx={{
                 justifyContent: 'space-evenly',
                 display: 'flex',
@@ -63,8 +63,10 @@ const ModalC = ({ closeModal }) => {
                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                 textAlign: 'center'
             }}>
+                
                 <form onSubmit={handleSubmit}>
                     <Typography variant="h6" gutterBottom >Crea un Usuario</Typography>
+                    <Box sx={{ display: "flex",flexDirection: "column",alignItems: "center"}}>
                     <TextField
                         type="text"
                         name="nombre"
@@ -75,6 +77,7 @@ const ModalC = ({ closeModal }) => {
                         value={formData.nombre}
                         onChange={handleChange}
                         required
+                        sx={{width: "90%",margin:"5px"}}
                     />
                     <TextField
                         type="email"
@@ -86,6 +89,7 @@ const ModalC = ({ closeModal }) => {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        sx={{width: "90%",margin:"5px"}}
                     />
                     <TextField
                         type="text"
@@ -97,6 +101,7 @@ const ModalC = ({ closeModal }) => {
                         value={formData.cedula}
                         onChange={handleChange}
                         required
+                        sx={{width: "90%",margin:"5px"}}
                     />
                     <TextField
                         type="password"
@@ -108,6 +113,7 @@ const ModalC = ({ closeModal }) => {
                         value={formData.contrasena}
                         onChange={handleChange}
                         required
+                        sx={{width: "90%",margin:"5px"}}
                     />
                     <TextField
                         type="password"
@@ -119,14 +125,16 @@ const ModalC = ({ closeModal }) => {
                         value={formData.Ccontrasena}
                         onChange={handleChange}
                         required
+                        sx={{width: "90%",margin:"5px"}}
                     />
                     <Button type='submit'variant="contained" 
                     sx={{
-                        margin:"10px 0px 10px 0px",
-                        width: "88%",
+                        margin:"10px 0px 0px 0px",
+                        width: "90%",
                         bgcolor: "#9ED3DC",
                         borderRadius: "20px"
                     }}>Registrarse</Button>
+                    </Box>
                 </form>
                 <Typography variant="body1" gutterBottom>Volver a la página principal <a href='/' className='open-modal-link' onClick={closeModal}>Inicio</a></Typography>
             </Box>
